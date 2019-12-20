@@ -21,7 +21,7 @@ Xilinx Vivado
 
 Other verilog
 
-## Imprementaion size 
+## Implementation size 
 
 Xilinx FPGA(XC7A35TICSG324-1L)
 
