@@ -1,0 +1,14 @@
+#######################
+#  MUL3
+# 0x5C + 0x15 = 0x78C
+# exp D=0x8C
+#######################
+    N=0x5C;ADDL=N;A=ANS
+    N=0x15;ADDL=N;C=ANS
+    B=ANS;D=ANS;ONE;NOT;ADD
+    MUL;ADDL=A;ADDR=D;D=ANS;C=RSH;I=X;X=3
+    MUL;ADDL=DIVA;ADDR=D;A=ANS;D=ANS;C=RSH;WAIT
+    EXIT(0);@D
+END:
+    B(END)
+    NOP

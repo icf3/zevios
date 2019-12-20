@@ -1,0 +1,14 @@
+#######################
+#  logic
+#  AND/OR/XOR
+#  exp D=0x2A
+#######################
+    NOP
+    ADDL=N;N=0x5E;A=ANS
+    ONE;B=ANS
+    ADDL=A;ADDR=B;OR;C=ANS
+    ADDL=N;N=0xCC;ADDR=C;B=ANS;AND
+    ADDL=N;N=0x66;ADDR=B;D=ANS;XOR
+    EXIT(0);@D
+END:
+    B(END)

@@ -1,0 +1,26 @@
+#######################
+#  call1
+#  CALL
+#  exp D=0x33
+#######################
+    NOP
+    B=ANS;D=ANS
+    CALL(SUB0)
+    ADDL=N;N=0x10;ADDR=B;B=ANS    
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    ADDR=B;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+SUB0:
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    RETURN
+    NOP
+    

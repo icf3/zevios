@@ -1,0 +1,108 @@
+#####################
+#  LED
+#####################
+    NOP
+START:
+    NOP
+    NOP
+#
+    N=0x01;ADDL=N;D=ANS
+    C=ANS;NOT
+LBL0C:
+    B=ANS;NOT
+LBL0B:
+    A=ANS;NOT
+LBL0A:
+    I=X;X=15
+    WAIT
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT
+    BCF1(LBL0A)
+    NOP
+    ADDR=B;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;B=ANS
+    BCF1(LBL0B)
+    NOP
+    ADDR=C;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;C=ANS
+    BCF1(LBL0C)
+    NOP
+#
+    N=0x02;ADDL=N;D=ANS
+    C=ANS;NOT
+LBL1C:
+    B=ANS;NOT
+LBL1B:
+    A=ANS;NOT
+LBL1A:
+    I=X;X=15
+    WAIT
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT
+    BCF1(LBL1A)
+    NOP
+    ADDR=B;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;B=ANS
+    BCF1(LBL1B)
+    NOP
+    ADDR=C;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;C=ANS
+    BCF1(LBL1C)
+    NOP
+#
+    N=0x04;ADDL=N;D=ANS
+    C=ANS;NOT
+LBL2C:
+    B=ANS;NOT
+LBL2B:
+    A=ANS;NOT
+LBL2A:
+    I=X;X=15
+    WAIT
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT
+    BCF1(LBL2A)
+    NOP
+    ADDR=B;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;B=ANS
+    BCF1(LBL2B)
+    NOP
+    ADDR=C;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;C=ANS
+    BCF1(LBL2C)
+    NOP
+#
+    N=0x08;ADDL=N;D=ANS
+    C=ANS;NOT
+LBL3C:
+    B=ANS;NOT
+LBL3B:
+    A=ANS;NOT
+LBL3A:
+    I=X;X=15
+    WAIT
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT
+    BCF1(LBL3A)
+    NOP
+    ADDR=B;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;B=ANS
+    BCF1(LBL3B)
+    NOP
+    ADDR=C;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;C=ANS
+    BCF1(LBL3C)
+    NOP
+#
+    NOP
+    NOP
+    B(START)
+    NOP

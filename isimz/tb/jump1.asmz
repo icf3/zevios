@@ -1,0 +1,29 @@
+#######################
+#  jump1
+#  B   
+#  exp D=0x33
+#######################
+    NOP
+    B(START)
+    B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+NEXT:
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+START:
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    B(NEXT)
+    NOP

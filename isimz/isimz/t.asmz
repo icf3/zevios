@@ -1,0 +1,9 @@
+# TEST
+$hoge 0x34
+$RSA 15
+      ADDL=N;N=$hoge;A=ANS
+      STORE;Z=$RSA;X=$RSA;STORE
+      EXIT(0);@A;@R15
+
+
+      

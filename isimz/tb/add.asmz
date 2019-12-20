@@ -1,0 +1,10 @@
+#########################
+#  ADD
+# 0x35 + 0xC8 = 0xFD
+#########################
+    N=0x35;ADDL=N;A=ANS
+    N=0xC8;ADDL=N;B=ANS
+    ADDL=A;ADDR=B;D=ANS
+    EXIT(0);@D
+END:
+    B(END)

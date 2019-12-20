@@ -1,0 +1,15 @@
+#######################
+#  MUL2
+# 0x3C * 0x05 = 0x12C
+# exp D=0x2C
+#######################
+    N=0x3C;ADDL=N;A=ANS
+    N=0x05;ADDL=N;C=ANS
+    B=ANS;D=ANS
+    MUL;ADDL=A;ADDR=D;D=ANS;C=RSH
+    MUL;ADDL=DIVA;ADDR=D;A=ANS;D=ANS;C=RSH
+    MUL;ADDL=DIVA;ADDR=D;A=ANS;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP

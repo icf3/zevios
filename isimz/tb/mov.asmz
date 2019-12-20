@@ -1,0 +1,16 @@
+#######################
+#  MOV
+#  exp D=0x4C
+#######################
+    NOP
+    ADDL=N;N=0x4C;A=ANS
+    STORE;Z=4
+    X=4
+    MOV;STORE;Z=5
+    X=5
+    D=REG
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+

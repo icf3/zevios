@@ -1,0 +1,29 @@
+#######################
+#  call4
+#  RETURN0/1
+#  exp D=0x02
+#######################
+    NOP
+    D=ANS
+    CALL(SUB0)
+    NOP
+    CALL(SUB1)
+    NOP
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+SUB0:
+    OR
+    RETURN0
+    NOP
+    ADDR=D;ONE;D=ANS
+    RETURN1
+    NOP
+SUB1:
+    OR;NOT
+    RETURN1
+    NOP
+    ADDR=D;ONE;D=ANS
+    RETURN0
+    NOP

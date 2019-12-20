@@ -1,0 +1,84 @@
+################
+# interrupt1
+# exp D=0x83
+################
+    JB(START)
+    NOP
+    JB(INT0)
+    NOP
+INT0:
+    ADDL=N;N=0x80;ADDR=D;OR;D=ANS
+    RETURNI
+    NOP
+START:
+    D=ANS
+    ADDL=N;N=0x03;A=ANS
+    ENABLE
+#
+    NOP
+    NOP
+    NOP
+    NOP
+MAIN:
+    I=X;X=15
+    WAIT
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT
+    BCF1(MAIN)
+    ADDR=D;ONE;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+ERR:
+    D=ANS
+    EXIT(1);@D
+    N=0xA5;ADDL=N;D=ANS
+    C=ANS;NOT
+LBL0C:
+    B=ANS;NOT
+LBL0B:
+    A=ANS;NOT
+LBL0A:
+    I=X;X=15
+    WAIT
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT
+    BCF1(LBL0A)
+    NOP
+    ADDR=B;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;B=ANS
+    BCF1(LBL0B)
+    NOP
+    ADDR=C;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;C=ANS
+    BCF1(LBL0C)
+    NOP
+#
+    N=0x5A;ADDL=N;D=ANS
+    C=ANS;NOT
+LBL1C:
+    B=ANS;NOT
+LBL1B:
+    A=ANS;NOT
+LBL1A:
+    I=X;X=15
+    WAIT
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT
+    BCF1(LBL1A)
+    NOP
+    ADDR=B;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;B=ANS
+    BCF1(LBL1B)
+    NOP
+    ADDR=C;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;C=ANS
+    BCF1(LBL1C)
+    NOP
+    B(ERR)
+    NOP

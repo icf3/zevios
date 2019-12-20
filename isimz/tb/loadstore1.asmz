@@ -1,0 +1,14 @@
+#######################
+#  LOAD/STORE
+#  exp D=0x5E
+#######################
+    NOP
+    ADDL=N;N=0x5e;A=ANS
+    STORE;Z=5
+    X=5
+    D=REG
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+

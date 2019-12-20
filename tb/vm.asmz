@@ -1,0 +1,83 @@
+########################################################
+# vm (Virtual Machie)
+# exp D=0b
+#
+# C Register : SP(Stack Pointer)
+# D Register : PRINT (LED x 8)
+# MEM[0-255] : Memory
+#
+# PUSHI: SP=SP-1 , MEM[SP]=nn                     (5cyc)
+# PUSHR: SP=SP-1 , MEM[SP]=MEM[nn]                (5cyc)
+# POP  : MEM[nn]=MEM[SP] , SP=SP+1                (4cyc)
+# ADD  : MEM[SP+1]=MEM[SP]+MEM[SP+1] , SP=SP+1    (7cyc)
+# MUL  : MEM[SP+1]=MEM[SP]*MEM[SP+1] , SP=SP+1    (16cyc)
+# PRINT: PRINT MEM[SP]      
+########################################################
+    JB(START)
+    NOP
+    JB(INT0)
+    JB(INT1)
+INT0:
+INT1:
+    REGBANK;X=1
+    STORE;Z=12;ADDR=B;A=ANS
+    STORE;Z=13;ADDR=C;A=ANS
+    STORE;Z=14;ADDR=D;A=ANS
+    STORE;Z=15
+    I=X;X=4;B=ANS;C=ANS;D=ANS
+    WAIT;ADDL=A;ONE;A=ANS
+    X=12
+    X=13;B=REG
+    X=14;B=REG;ADDR=B;A=ANS
+    X=15;C=REG
+    D=REG
+    RETURNI
+    NOP
+START:                
+########################################################
+# Initial MEM[0]=0x02 , MEM[1]=0x03
+########################################################
+    ADDL=N;N=0x02;A=ANS
+    STORE;Z=0
+    ADDL=N;N=0x03;A=ANS
+    B(START2)
+    STORE;Z=1;C=ANS;D=ANS
+########################################################
+%NOP:
+    JRETURN
+%PUSHI:
+    ADDR=C;ADDL=N;N=0xFF;C=ANS
+    RETURN;COPR;ADDL=N;A=ANS
+    ADDR=C;R(ADDR);STORE
+%PUSHR:
+    ADDR=C;ADDL=N;N=0xFF;C=ANS
+    RETURN;R(N);COPR
+    MOV;ADDR=C;R(ADDR);STORE
+%POP:
+    RETURN;R(ADDR);ADDR=C;ONE;C=ANS
+    MOV;COPR;R(N);STORE
+%ADD:
+    R(ADDR);ADDR=C;ONE;C=ANS
+    B=REG;R(ADDR);ADDR=C
+    B=REG;ADDR=B;A=ANS
+    RETURN;ADDL=A;ADDR=B;A=ANS
+    R(ADDR);ADDR=C;STORE
+%MUL:
+    R(ADDR);ADDR=C;ONE;C=ANS;D=ANS
+    C=REG;R(ADDR);ADDR=C
+    C=REG;ADDR=C;A=ANS
+    B=ANS;I=X;X=7
+    MUL;ADDL=A;ADDR=B;B=RSH;C=RSH;WAIT
+    RETURN;ADDR=C;A=ANS
+    R(ADDR);ADDR=D;STORE;C=ANS
+%PRINT:
+    RETURN;R(ADDR);ADDR=C
+    D=REG
+START2:
+    _%PUSHI,0x05,%PUSHR,0x00
+    _%PUSHR,0x01,%MUL,0x00
+    _%ADD,0x00,%PRINT,0x00
+    EXIT(0);@D
+END:
+    B(END)
+    NOP

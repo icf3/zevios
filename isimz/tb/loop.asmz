@@ -1,0 +1,18 @@
+#######################
+#  LOOP
+#  exp D=0x0A
+#######################
+    NOP
+    D=ANS
+    I=X;X=3
+    ADDR=D;D=ANS;ONE
+LBL0:
+    LOOP(LBL0)
+    ADDR=D;D=ANS;ONE
+    ADDR=D;D=ANS;ONE
+    ADDR=D;D=ANS;ONE
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+

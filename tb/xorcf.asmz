@@ -1,0 +1,78 @@
+#######################
+#  XOR;CF
+#  exp D=0x03
+#######################
+    JB(START)
+    NOP
+    JB(INT0)
+    JB(INT1)
+INT0:
+INT1:
+    REGBANK;X=1
+    STORE;Z=12;ADDR=B;A=ANS
+    STORE;Z=13;ADDR=C;A=ANS
+    STORE;Z=14;ADDR=D;A=ANS
+    STORE;Z=15
+    I=X;X=4;B=ANS;C=ANS;D=ANS
+    WAIT;ADDL=A;ONE;A=ANS
+    X=12
+    X=13;B=REG
+    X=14;B=REG;ADDR=B;A=ANS
+    X=15;C=REG
+    D=REG
+    RETURNI
+    NOP
+START:                
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    A=ANS
+    ADDL=N;N=0xAB;B=ANS
+    ADDL=N;N=0xCD;C=ANS
+    ADDL=N;N=0xEF;D=ANS
+    XOR;ADDL=N;N=0xAB;ADDR=B
+    XOR;ADDL=N;N=0xCD;ADDR=C;CF
+    XOR;ADDL=N;N=0xEF;ADDR=D;CF
+    CALL1(OK)
+    NOP
+    XOR;ADDL=N;N=0xAA;ADDR=B
+    XOR;ADDL=N;N=0xCD;ADDR=C;CF
+    XOR;ADDL=N;N=0xEF;ADDR=D;CF
+    CALL1(OK)
+    NOP
+    XOR;ADDL=N;N=0xAB;ADDR=B
+    XOR;ADDL=N;N=0xCD;ADDR=C;CF
+    XOR;ADDL=N;N=0xEF;ADDR=D;CF
+    CALL1(OK)
+    NOP
+    XOR;ADDL=N;N=0xAB;ADDR=B
+    XOR;ADDL=N;N=0xCC;ADDR=C;CF
+    XOR;ADDL=N;N=0xEF;ADDR=D;CF
+    CALL1(OK)
+    NOP
+    XOR;ADDL=N;N=0xAB;ADDR=B
+    XOR;ADDL=N;N=0xCD;ADDR=C;CF
+    XOR;ADDL=N;N=0xEF;ADDR=D;CF
+    CALL1(OK)
+    NOP
+    XOR;ADDL=N;N=0xAB;ADDR=B
+    XOR;ADDL=N;N=0xCD;ADDR=C;CF
+    XOR;ADDL=N;N=0xFF;ADDR=D;CF
+    CALL1(OK)
+    NOP
+    ADDL=A;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+OK:
+    ADDL=A;ONE;A=ANS
+    RETURN
+    NOP
+    
+

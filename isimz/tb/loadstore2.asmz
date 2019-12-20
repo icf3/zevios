@@ -1,0 +1,15 @@
+#######################
+#  loadstore2
+#  LOAD/STORE with R(N)
+#  exp D=0x5E
+#######################
+    NOP
+    ADDL=N;N=0x5e;A=ANS
+    STORE;N=200;R(N)
+    N=200;R(N)
+    D=REG
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+

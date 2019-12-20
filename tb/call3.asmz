@@ -1,0 +1,88 @@
+#######################
+#  call3
+#  CALL0/1
+#  exp D=0x85
+#######################
+    JB(START)
+    NOP
+    JB(INT0)
+    JB(INT1)
+INT0:
+INT1:
+    REGBANK;X=1
+    STORE;Z=12;ADDR=B;A=ANS
+    STORE;Z=13;ADDR=C;A=ANS
+    STORE;Z=14;ADDR=D;A=ANS
+    STORE;Z=15
+    I=X;X=4;B=ANS;C=ANS;D=ANS
+    WAIT;ADDL=A;ONE;A=ANS
+    X=12
+    X=13;B=REG
+    X=14;B=REG;ADDR=B;A=ANS
+    X=15;C=REG
+    D=REG
+    RETURNI
+    NOP
+START:                
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    B=ANS;D=ANS
+    OR
+    CALL0(SUB2)
+    ADDL=N;N=0x10;ADDR=B;B=ANS    
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    CALL1(SUB0)
+    ADDL=N;N=0x10;ADDR=B;B=ANS    
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    OR;NOT
+    CALL0(SUB1)
+    ADDL=N;N=0x10;ADDR=B;B=ANS    
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    CALL1(SUB2)
+    ADDL=N;N=0x10;ADDR=B;B=ANS    
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    ADDR=B;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+SUB0:
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    RETURN
+    NOP
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+SUB1:
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    RETURN
+    NOP
+SUB2:
+    EXIT(0);@D
+    B(SUB2)
+    NOP
+    
+    

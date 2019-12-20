@@ -1,0 +1,111 @@
+################
+# compress2
+# exp D=0x0A
+################
+    JB(START)
+    NOP
+    JB(INT0)
+    JB(INT1)
+INT0:
+INT1:
+    REGBANK;X=1
+    STORE;Z=12;ADDR=B;A=ANS
+    STORE;Z=13;ADDR=C;A=ANS
+    STORE;Z=14;ADDR=D;A=ANS
+    STORE;Z=15
+    I=X;X=4;B=ANS;C=ANS;D=ANS
+    WAIT;ADDL=A;ONE;A=ANS
+    X=12
+    X=13;B=REG
+    X=14;B=REG;ADDR=B;A=ANS
+    X=15;C=REG
+    D=REG
+    RETURNI
+    NOP
+%CMD0:
+    ADDL=N;N=0x01;ADDR=D;D=ANS
+    ADDL=N;ADDR=D;D=ANS;OR;COPR
+    JRETURN
+%CMD1:
+    ADDL=N;N=0x02;ADDR=D;D=ANS
+    ADDL=N;ADDR=D;D=ANS;OR;COPR
+    JRETURN
+%CMD2:
+    ADDL=N;N=0x04;ADDR=D;D=ANS
+    ADDL=N;ADDR=D;D=ANS;OR;COPR
+    JRETURN
+%CMD3:
+    ADDL=N;N=0x08;ADDR=D;D=ANS
+    ADDL=N;ADDR=D;D=ANS;OR;COPR
+    JRETURN
+%INC:
+    ADDR=D;ONE;D=ANS;JRETURN
+START:
+    D=ANS
+    _%CMD0,0x10,%CMD1,0x20
+    _%CMD2,0x40,%CMD3,0x80
+    ADDL=N;N=0xFF;ADDR=D;XOR
+    BZF0(ERR)
+    NOP
+    D=ANS
+    _%INC,0x00,%INC,0x00
+    _%INC,0x00,%INC,0x00
+    _%INC,0x00,%INC,0x00
+    _%INC,0x00,%INC,0x00
+    _%INC,0x00,%INC,0x00
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+ERR:
+    D=ANS
+    EXIT(1);@D
+    N=0xA5;ADDL=N;D=ANS
+    C=ANS;NOT
+LBL0C:
+    B=ANS;NOT
+LBL0B:
+    A=ANS;NOT
+LBL0A:
+    I=X;X=15
+    WAIT
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT
+    BCF1(LBL0A)
+    NOP
+    ADDR=B;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;B=ANS
+    BCF1(LBL0B)
+    NOP
+    ADDR=C;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;C=ANS
+    BCF1(LBL0C)
+    NOP
+#
+    N=0x5A;ADDL=N;D=ANS
+    C=ANS;NOT
+LBL1C:
+    B=ANS;NOT
+LBL1B:
+    A=ANS;NOT
+LBL1A:
+    I=X;X=15
+    WAIT
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT
+    BCF1(LBL1A)
+    NOP
+    ADDR=B;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;B=ANS
+    BCF1(LBL1B)
+    NOP
+    ADDR=C;A=ANS
+    ADDL=A;NOT;A=ANS
+    ADD;ADDL=A;NOT;C=ANS
+    BCF1(LBL1C)
+    NOP
+    B(ERR)
+    NOP

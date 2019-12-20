@@ -1,0 +1,35 @@
+#######################
+#  MUL3
+# 0x5C + 0x15 = 0x78C
+# exp D=0x8C
+#######################
+    JB(START)
+    NOP
+    JB(INT0)
+    JB(INT1)
+INT0:
+INT1:
+    REGBANK;X=1
+    STORE;Z=12;ADDR=B;A=ANS
+    STORE;Z=13;ADDR=C;A=ANS
+    STORE;Z=14;ADDR=D;A=ANS
+    STORE;Z=15
+    I=X;X=4;B=ANS;C=ANS;D=ANS
+    WAIT;ADDL=A;ONE;A=ANS
+    X=12
+    X=13;B=REG
+    X=14;B=REG;ADDR=B;A=ANS
+    X=15;C=REG
+    D=REG
+    RETURNI
+    NOP
+START:                
+    N=0x5C;ADDL=N;A=ANS
+    N=0x15;ADDL=N;C=ANS
+    B=ANS;D=ANS;ONE;NOT;ADD
+    MUL;ADDL=A;ADDR=D;D=ANS;C=RSH;I=X;X=3
+    MUL;ADDL=DIVA;ADDR=D;A=ANS;D=ANS;C=RSH;WAIT
+    EXIT(0);@D
+END:
+    B(END)
+    NOP

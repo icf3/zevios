@@ -1,0 +1,51 @@
+#######################
+#  REGBANK
+#  exp D=0x25
+#######################
+    JB(START)
+    NOP
+    JB(INT0)
+    JB(INT1)
+INT0:
+INT1:
+    REGBANK;X=1
+    STORE;Z=12;ADDR=B;A=ANS
+    STORE;Z=13;ADDR=C;A=ANS
+    STORE;Z=14;ADDR=D;A=ANS
+    STORE;Z=15
+    I=X;X=4;B=ANS;C=ANS;D=ANS
+    WAIT;ADDL=A;ONE;A=ANS
+    X=12
+    X=13;B=REG
+    X=14;B=REG;ADDR=B;A=ANS
+    X=15;C=REG
+    D=REG
+    RETURNI
+    NOP
+START:                
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    REGBANK;X=0
+    ADDL=N;N=0x05;A=ANS
+    STORE;Z=8
+    REGBANK;X=1
+    ADDL=N;N=0x20;A=ANS
+    STORE;Z=9
+    REGBANK;X=0
+    X=8
+    B=REG;REGBANK;X=1
+    X=9;ADDR=B;A=ANS
+    B=REG
+    ADDL=A;ADDR=B;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+

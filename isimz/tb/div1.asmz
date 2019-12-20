@@ -1,0 +1,15 @@
+#######################
+#  DIV
+#  0x2B5C / 0x3C = 0xB9
+#  exp D = 0xB9
+#######################
+    N=0x2B;ADDL=N;B=ANS
+    N=0x5C;ADDL=N;C=ANS
+    N=0x3C;ADDL=N;D=ANS
+    I=X;X=15;A=ANS
+    ADDL=DIVA;ADDR=D;ONE;NOT;A=ANS;B=LSH;C=LSH;WAIT
+    ADDR=C;D=ANS
+    EXIT(0);@A;@B;@C;@D
+END:
+    B(END)
+    NOP

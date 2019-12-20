@@ -1,0 +1,48 @@
+#######################
+#  call3
+#  CALL0/1
+#  exp D=0x85
+#######################
+    NOP
+    B=ANS;D=ANS
+    OR
+    CALL0(SUB2)
+    ADDL=N;N=0x10;ADDR=B;B=ANS    
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    CALL1(SUB0)
+    ADDL=N;N=0x10;ADDR=B;B=ANS    
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    OR;NOT
+    CALL0(SUB1)
+    ADDL=N;N=0x10;ADDR=B;B=ANS    
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    CALL1(SUB2)
+    ADDL=N;N=0x10;ADDR=B;B=ANS    
+    ADDL=N;N=0x10;ADDR=B;B=ANS
+    ADDR=B;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+SUB0:
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    RETURN
+    NOP
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+SUB1:
+    ADDR=B;ONE;B=ANS    
+    ADDR=B;ONE;B=ANS    
+    RETURN
+    NOP
+SUB2:
+    EXIT(0);@D
+    B(SUB2)
+    NOP
+    
+    

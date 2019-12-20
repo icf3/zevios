@@ -1,0 +1,22 @@
+#######################
+#  REGBANK isim not support
+#  exp D=0x25
+#######################
+    NOP
+    REGBANK;X=0
+    ADDL=N;N=0x05;A=ANS
+    STORE;Z=8
+    REGBANK;X=1
+    ADDL=N;N=0x20;A=ANS
+    STORE;Z=8
+    REGBANK;X=0
+    X=8
+    B=REG;REGBANK;X=1
+    X=8;ADDR=B;A=ANS
+    B=REG
+    ADDL=A;ADDR=B;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+

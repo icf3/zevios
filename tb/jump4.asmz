@@ -1,0 +1,75 @@
+#######################
+#  jump4
+#  BZF0/1
+#  exp D=0x77
+#######################
+    JB(START)
+    NOP
+    JB(INT0)
+    JB(INT1)
+INT0:
+INT1:
+    REGBANK;X=1
+    STORE;Z=12;ADDR=B;A=ANS
+    STORE;Z=13;ADDR=C;A=ANS
+    STORE;Z=14;ADDR=D;A=ANS
+    STORE;Z=15
+    I=X;X=4;B=ANS;C=ANS;D=ANS
+    WAIT;ADDL=A;ONE;A=ANS
+    X=12
+    X=13;B=REG
+    X=14;B=REG;ADDR=B;A=ANS
+    X=15;C=REG
+    D=REG
+    RETURNI
+    NOP
+START:                
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    NOP
+    D=ANS;B=ANS
+    OR;NOT
+    BZF1(TEST)
+    NOP
+    ADDL=N;N=0x04;ADDR=D;D=ANS;OR
+    OR;NOT
+    BZF0(TEST)
+    NOP
+    ADDL=N;N=0x08;ADDR=D;D=ANS;OR
+    B(END)
+    NOP
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+NEXT:
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;A=ANS
+    ADDL=A;ADDR=D;D=ANS;OR
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+TEST:
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    OR
+    BZF0(NEXT)
+    NOP
+    ADDL=N;N=0x40;ADDR=D;D=ANS;OR
+    OR
+    BZF1(NEXT)
+    NOP
+    ADDL=N;N=0x80;ADDR=D;D=ANS;OR
+    B(END)
+    NOP

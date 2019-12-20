@@ -1,0 +1,15 @@
+#######################
+#  MUL1
+# 0x3C + 0xB9 = 0x2B5C
+# exp D=0x77
+#######################
+    N=0x3C;ADDL=N;A=ANS
+    N=0xB9;ADDL=N;C=ANS
+    I=X;X=7;B=ANS
+    MUL;ADDL=A;ADDR=B;B=RSH;C=RSH;WAIT
+    ADDR=B;A=ANS
+    ADDL=A;ADDR=C;XOR;D=ANS
+    EXIT(0);@B;@C;@D
+END:
+    B(END)
+    NOP

@@ -1,0 +1,16 @@
+#######################
+#  loadstore3
+#  LOAD/STORE with R(ADDR)
+#  exp D=0x5E
+#######################
+    NOP
+    ADDL=N;N=200;B=ANS
+    ADDL=N;N=0x5e;A=ANS
+    STORE;ADDR=B;R(N)
+    ADDR=B;R(N)
+    D=REG
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+

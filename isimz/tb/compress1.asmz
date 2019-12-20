@@ -1,0 +1,31 @@
+################
+# compress1
+# exp D=0xFF
+################
+    B(START)
+    NOP
+%CMD0:
+    ADDL=N;N=0x01;ADDR=D;D=ANS
+    ADDL=N;ADDR=D;D=ANS;OR;COPR
+    JRETURN
+%CMD1:
+    ADDL=N;N=0x02;ADDR=D;D=ANS
+    ADDL=N;ADDR=D;D=ANS;OR;COPR
+    JRETURN
+%CMD2:
+    ADDL=N;N=0x04;ADDR=D;D=ANS
+    ADDL=N;ADDR=D;D=ANS;OR;COPR
+    JRETURN
+%CMD3:
+    ADDL=N;N=0x08;ADDR=D;D=ANS
+    ADDL=N;ADDR=D;D=ANS;OR;COPR
+    JRETURN
+START:
+    D=ANS
+    _%CMD0,0x10,%CMD1,0x20
+    _%CMD2,0x40,%CMD3,0x80
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+   

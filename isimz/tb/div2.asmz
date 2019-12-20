@@ -1,0 +1,14 @@
+#######################
+#  DIV2
+#  0x8C / 0x09 = 0x0F
+#  exp D = 0x0F
+#######################
+    N=0x8C;ADDL=N;B=ANS
+    N=0x09;ADDL=N;D=ANS
+    I=X;X=7;A=ANS;C=ANS
+    ADDL=DIVA;ADDR=D;ONE;NOT;A=ANS;B=LSH;C=LSH;WAIT
+    ADDR=C;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP

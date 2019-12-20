@@ -1,0 +1,44 @@
+#######################
+#  jump3
+#  BCF0/1
+#  exp D=0x77
+#######################
+    NOP
+    ADD;D=ANS;B=ANS
+    BCF1(START)
+    NOP
+    ADDL=N;N=0x04;ADDR=D;D=ANS;OR
+    BCF0(START)
+    NOP
+    ADDL=N;N=0x08;ADDR=D;D=ANS;OR
+    B(END)
+    NOP
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+NEXT:
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;A=ANS
+    ADDL=A;ADDR=D;D=ANS;OR
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+START:
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    ADD;ONE;NOT
+    BCF0(NEXT)
+    NOP
+    ADDL=N;N=0x40;ADDR=D;D=ANS;OR
+    BCF1(NEXT)
+    NOP
+    ADDL=N;N=0x80;ADDR=D;D=ANS;OR
+    B(END)
+    NOP

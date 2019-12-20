@@ -1,0 +1,30 @@
+#######################
+#  jump2
+#  JB   
+#  exp D=0x33
+#######################
+    NOP
+    B=ANS
+    JB(START)
+    ADDL=N;N=0x80;ADDR=B;B=ANS;OR
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+NEXT:
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;ADDL=N;N=16;B=ANS
+    ADDR=B;D=ANS
+    EXIT(0);@D
+END:
+    JB(END)
+    ADDL=N;N=0x80;ADDR=B;B=ANS;OR
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+START:
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    ADDR=B;ONE;B=ANS
+    JB(NEXT)
+    ADDL=N;N=0x80;ADDR=B;B=ANS;OR

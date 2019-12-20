@@ -1,0 +1,13 @@
+#######################
+#  INPUT
+#  exp D=0xBC
+#######################
+    NOP
+    INPUT;C=ANS
+    ADDR=C;A=ANS
+    INPUTOUTPUT;C=ANS;Z=0
+    ADDL=A;ADDR=C;D=ANS    
+    EXIT(0);@D
+END:
+    B(END)
+    NOP

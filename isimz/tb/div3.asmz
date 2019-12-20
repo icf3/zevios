@@ -1,0 +1,15 @@
+#######################
+#  DIV3
+#  0x1ABC / 0x9B = 0x2c
+#  exp D = 0x2c
+#######################
+    N=0x1A;ADDL=N;A=ANS
+    N=0xBC;ADDL=N;B=ANS
+    N=0x9B;ADDL=N;D=ANS
+    I=X;X=7;C=ANS
+    ADDL=DIVA;ADDR=D;ONE;NOT;A=ANS;B=LSH;C=LSH;WAIT
+    ADDR=C;D=ANS
+    EXIT(0);@D
+END:
+    B(END)
+    NOP
