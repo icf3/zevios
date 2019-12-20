@@ -1,4 +1,4 @@
-<font color="#FF0000"><b>CAUTION Still under construction</b></font>
+# CAUTION!!! Still under construction
 
 # Zevios ICF3-Z Core
 
@@ -16,7 +16,9 @@ ASIC and FPGA
 ## HDL
 
 icarus verilog
+
 Xilinx Vivado
+
 Other verilog
 
 ## Imprementaion size 
