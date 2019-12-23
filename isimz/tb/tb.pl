@@ -1,7 +1,8 @@
 #!/usr/bin/perl
 ##########################################################
 # ICF3-Z Project https://icf3z.idletime.tokyo/
-# Naoki Hirayama 2019/4/21
+# Naoki Hirayama 2019/04/21
+# Naoki Hirayama 2019/12/23
 ##########################################################
 
 $pass = 0;
@@ -10,7 +11,7 @@ $fail = 0;
 sub dotest {
     if($tname eq '' || $check eq '') { die; }
 
-    open(IN,"./isimz S $tname.asmz |");
+    open(IN,"./isimz S $tname.asmz |") || die "./isimz file not found";
     $flag = 0;
     while(<IN>) {
         if( /$check/ ) {$flag = 1;}

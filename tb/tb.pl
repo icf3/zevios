@@ -1,13 +1,19 @@
 #!/usr/bin/perl
 ##########################################################
 # ICF3-Z Project https://icf3z.idletime.tokyo/
-# Naoki Hirayama 2019/5/23
+# Naoki Hirayama 2019/05/23
+# Naoki Hirayama 2019/12/23
 ##########################################################
 
 ##### Optiopn #####
 $spm16 = "";
 $int = "";
 ##########################################################
+
+open(CHK1,"icf3z.v") || die "'make copy' ";
+close(CHK1);
+open(CHK2,"isimz") || die "./isimz not found.";
+close(CHK2);
 
 $pass = 0;
 $fail = 0;
