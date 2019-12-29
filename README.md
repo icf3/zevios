@@ -23,12 +23,16 @@ Other verilog
 
 ## Implementation size 
 
+Board : [Arty](https://reference.digilentinc.com/reference/programmable-logic/arty/start)
 Xilinx FPGA(XC7A35TICSG324-1L)
 
-| Zevios |LUT|FF|BRAM|LUT-RAM|Freq|
+| option |LUT|FF|BRAM|LUT-RAM|Freq|
 |:--|:--:|:--:|:--:|:--:|:--:|
-|Area |387|197|1.5|10|160MHz|
-|Perf |442|197|1.5|10|175MHz|
+|Area |390|197|1.5|10|150MHz|
+|Area |406|197|1.5|10|160MHz|
+|Perf |481|197|1.5|10|175MHz|
+
+Vivado 2019.2
 
 ## Web site
 
