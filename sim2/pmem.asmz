@@ -1,0 +1,41 @@
+#############################
+# R7R8R9R10 = R1R2R3R4  / R6
+#############################
+    A=ANS;ADDL=N;N=0x89
+    STORE;Z=1
+    A=ANS;ADDL=N;N=0xAB
+    STORE;Z=2
+    A=ANS;ADDL=N;N=0xCD
+    STORE;Z=3
+    A=ANS;ADDL=N;N=0xEF
+    STORE;Z=4
+    A=ANS;ADDL=N;N=0x17
+    STORE;Z=6
+#START#######################
+    A=ANS;X=1
+    B=REG;X=6
+    D=REG;D=ANS;X=2
+    C=REG;I=X;X=7
+    WAIT;ADDL=DIVA;ADDR=D;ONE;NOT;A=ANS;B=LSH;C=LSH
+    ADDL=A;D=ANS;I=X;X=7
+    X=3;ADDR=C;A=ANS
+    STORE;Z=7;C=REG;X=6
+    ADDR=D;A=ANS;D=REG;D=ANS
+    WAIT;ADDL=DIVA;ADDR=D;ONE;NOT;A=ANS;B=LSH;C=LSH
+    ADDL=A;D=ANS;I=X;X=7
+    X=4;ADDR=C;A=ANS
+    STORE;Z=8;C=REG;X=6
+    ADDR=D;A=ANS;D=REG;D=ANS
+    WAIT;ADDL=DIVA;ADDR=D;ONE;NOT;A=ANS;B=LSH;C=LSH
+    ADDL=A;D=ANS;I=X;X=7
+    ADDR=C;A=ANS
+    STORE;Z=9;X=6
+    ADDR=D;A=ANS;D=REG;D=ANS
+    WAIT;ADDL=DIVA;ADDR=D;ONE;NOT;A=ANS;B=LSH;C=LSH
+    ADDR=C;A=ANS
+    STORE;Z=10
+    EXIT(0);@R7;@R8;@R9;@R10
+END:
+    B(END)
+    NOP
+    

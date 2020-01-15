@@ -109,6 +109,7 @@ void resource_check(uint32_t c) {
         fprintf(fp,"ERROR: mnemonic conflict in %d\n",s_line);
         fprintf(fp,"%08X %08X\n",c,chk);
         fprintf(fp,"%s\n",buf);
+        exit(-1);
     }
 	chk |= c;
 }    
@@ -211,7 +212,7 @@ void CODE_LOOP(uint32_t *code,int op,int copr,char *adr,int pc) {
 		fprintf(fp,"lbl not found. %s\n",l);
 		exit(-1);
 	}
-    n = jmp - pc+2;
+    n = pc+2-jmp;
 	if(n>255 || n<0) exit_msg("loop range error");
     *code |= (op<<25) | (copr<<30) | (n&0xff);
 }

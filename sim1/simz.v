@@ -55,44 +55,12 @@ module simz(
         for(i=0 ; i<10000000 ; i=i+1 ) begin
             # 5
             if(opcode == 5'h1f) begin
-                $display("%h %h %h %h",ICf3z.CZabcd.A,ICf3z.CZabcd.B,ICf3z.CZabcd.C,ICf3z.CZabcd.D);
-                $display("result:%h",ICf3z.CZabcd.D);
-                for(i=256 ; i<=65504 ; i=i+32) begin
-                    $display("%h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h %h",
-                        ICf3z.CZreg.ram[i],
-                        ICf3z.CZreg.ram[i+1],
-                        ICf3z.CZreg.ram[i+2],
-                        ICf3z.CZreg.ram[i+3],
-                        ICf3z.CZreg.ram[i+4],
-                        ICf3z.CZreg.ram[i+5],
-                        ICf3z.CZreg.ram[i+6],
-                        ICf3z.CZreg.ram[i+7],
-                        ICf3z.CZreg.ram[i+8],
-                        ICf3z.CZreg.ram[i+9],
-                        ICf3z.CZreg.ram[i+10],
-                        ICf3z.CZreg.ram[i+11],
-                        ICf3z.CZreg.ram[i+12],
-                        ICf3z.CZreg.ram[i+13],
-                        ICf3z.CZreg.ram[i+14],
-                        ICf3z.CZreg.ram[i+15],
-                        ICf3z.CZreg.ram[i+16],
-                        ICf3z.CZreg.ram[i+17],
-                        ICf3z.CZreg.ram[i+18],
-                        ICf3z.CZreg.ram[i+19],
-                        ICf3z.CZreg.ram[i+20],
-                        ICf3z.CZreg.ram[i+21],
-                        ICf3z.CZreg.ram[i+22],
-                        ICf3z.CZreg.ram[i+23],
-                        ICf3z.CZreg.ram[i+24],
-                        ICf3z.CZreg.ram[i+25],
-                        ICf3z.CZreg.ram[i+26],
-                        ICf3z.CZreg.ram[i+27],
-                        ICf3z.CZreg.ram[i+28],
-                        ICf3z.CZreg.ram[i+29],
-                        ICf3z.CZreg.ram[i+30],
-                        ICf3z.CZreg.ram[i+31]);
-                end
-
+//                $display("result:%h",ICf3z.CZabcd.D);
+                $display("result:%h%h%h%h",
+			 ICf3z.CZreg.ram[7],
+                         ICf3z.CZreg.ram[8],
+                         ICf3z.CZreg.ram[9],
+                         ICf3z.CZreg.ram[10]);
                 $finish;
             end
 `ifdef INT0_ON

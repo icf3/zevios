@@ -6,8 +6,8 @@
 
 //`define INT0_ON
 //`define INT1_ON
-`define INT1_CONST_1
-`define IMODE_ENABLE
+//`define INT1_CONST_1
+//`define IMODE_ENABLE
 
 module simz(
     output [7:0] xPORTID_P,
@@ -55,8 +55,12 @@ module simz(
         for(i=0 ; i<10000000 ; i=i+1 ) begin
             # 5
             if(opcode == 5'h1f) begin
-                $display("%h %h %h %h",ICf3z.CZabcd.A,ICf3z.CZabcd.B,ICf3z.CZabcd.C,ICf3z.CZabcd.D);
-                $display("result:%h",ICf3z.CZabcd.D);
+//                $display("result:%h",ICf3z.CZabcd.D);
+                $display("result:%h%h%h%h",
+			 ICf3z.CZreg.ram[7],
+                         ICf3z.CZreg.ram[8],
+                         ICf3z.CZreg.ram[9],
+                         ICf3z.CZreg.ram[10]);
                 $finish;
             end
 `ifdef INT0_ON

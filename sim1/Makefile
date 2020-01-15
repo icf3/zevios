@@ -17,6 +17,7 @@ copy:
 
 clean:
 	rm -rf xsim.dir dat.add .Xil .cache *.vcd *.wdb *.jou *.log *.pb *.inc a.out wave.vcd vivado_pid*.str simz
-	rm -rf czctl.v czabcd.v czpmem.v czsmem.v czreg.v icf3z.v
+	rm -rf czctl.v czabcd.v czpmem.v czsmem.v czreg.v icf3z.v pmem.bin tmp.asmz tmp.bin
+
 
 

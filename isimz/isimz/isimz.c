@@ -1,6 +1,7 @@
 /* ICF3-Z assembler & simulator
-   Ver0.0 2019/4/23
-   Ver0.1 2019/5/22
+   Ver0.0 2019/04/23
+   Ver0.1 2019/05/22
+   Ver0.2 2020/01/13
    ICF3-Z Project https://icf3z.idletime.tokyo/
    Naoki Hirayama
  */
@@ -10,7 +11,7 @@
 #include <string.h>
 #include "isimz.h"
 
-static char ver[] = "0.1";
+static char ver[] = "0.2";
 extern uint64_t time;
 
 unsigned int mode;

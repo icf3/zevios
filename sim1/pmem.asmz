@@ -1,0 +1,88 @@
+#############################
+# Division
+# 32bit = 32bit / 16bit
+# R7R8R9R10 = R1R2R3R4 / R5R6
+# (R5>0)
+# work R0 R10
+# ZF=0:BYTE1 ZF=1:BYTE2
+# ans.  always R7=0 
+#############################
+    A=ANS;ADDL=N;N=0xB2
+    STORE;Z=1
+    A=ANS;ADDL=N;N=0x91
+    STORE;Z=2
+    A=ANS;ADDL=N;N=0xEA
+    STORE;Z=3
+    A=ANS;ADDL=N;N=0x25
+    STORE;Z=4
+    A=ANS;ADDL=N;N=0xFF
+    STORE;Z=5
+    A=ANS;ADDL=N;N=0xBE
+    STORE;Z=6
+#START#######################
+    A=ANS;X=1;ADD
+    B=REG;X=2;STORE;Z=7;XOR;NOT
+    C=REG;I=X;X=7
+#----------------------------
+# BYTE0
+#----------------------------
+BYTE0:
+    ADDL=DIVA;A=ANS;B=LSH;X=6
+    STORE;Z=0;ADDR=B;A=ANS;D=REG;D=ANS
+    STORE;Z=10;ADDL=A;ADDR=D;ONE;NOT;B=ANS;ADD;X=0
+    D=REG;D=ANS;X=5
+    ADDR=D;A=ANS;D=REG;D=ANS
+    ADDL=A;ADDR=D;NOT;CF;A=ANS;ADD
+    BCF1(BYTE0END)
+    X=0;C=LSH
+    D=REG;D=ANS;X=10
+    B=REG;ADDR=D;A=ANS
+BYTE0END:
+    LOOP(BYTE0)
+    ADDL=A;D=ANS
+    ADDL=N;N=0x80;ADDR=D;ADD
+# BYTE0 END
+    ADDR=C;A=ANS;X=3
+    STORE;Z=8;ADDR=D;A=ANS;C=REG;I=X;X=7
+#----------------------------
+# BYTE1
+#----------------------------
+BYTE1:
+    BCF1(BYTE1SUB)
+    ADDL=DIVA;A=ANS;B=LSH;X=6
+    STORE;Z=0;ADDR=B;A=ANS;D=REG;D=ANS
+    STORE;Z=10;ADDL=A;ADDR=D;ONE;NOT;B=ANS;ADD;X=0
+    D=REG;D=ANS;X=5
+    ADDR=D;A=ANS;D=REG;D=ANS
+    ADDL=A;ADDR=D;NOT;CF;A=ANS;ADD
+    BCF1(BYTE1END)
+    X=0;C=LSH
+    D=REG;D=ANS;X=10
+    B=REG
+    B(BYTE1END)
+    ADDR=D;A=ANS
+BYTE1SUB:
+    STORE;Z=0;ADDR=B;A=ANS;C=LSH;D=REG;D=ANS
+    ADDL=A;ADDR=D;ONE;NOT;B=ANS;ADD;X=0
+    D=REG;D=ANS;X=5
+    ADDR=D;A=ANS;D=REG;D=ANS
+    ADDL=A;ADDR=D;NOT;CF;A=ANS
+BYTE1END:
+    LOOP(BYTE1)
+    ADDL=A;D=ANS
+    ADDL=N;N=0x80;ADDR=D;ADD
+# BYTE1or2 END
+    BZF1(BYTE2END)    
+    ADDR=C;A=ANS;X=4
+    STORE;Z=9;XOR;C=REG
+    B(BYTE1)
+    ADDR=D;A=ANS;I=X;X=7
+#----------------------------
+# BYTE2
+#----------------------------
+BYTE2END:
+    STORE;Z=10
+    EXIT(0);@R7;@R8;@R9;@R10
+END:
+    B(END)
+    NOP
