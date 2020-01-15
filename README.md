@@ -34,6 +34,7 @@ tool : Vivado 2019.2
 |Perf |481|197|1.5|10|175MHz|
 
 BRAM 1.5 = 1 (Program Memory 4KB) + 0.5 (Data Memory 2KB) + 0 (micro code)
+
 Data Memory include Register and Scratchpad memory.
 
 ## Web site
