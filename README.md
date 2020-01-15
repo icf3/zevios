@@ -1,5 +1,3 @@
-# CAUTION!!! Still under construction
-
 # Zevios ICF3-Z Core
 
 Zevios is original CPU of ICF3-Z. It is 8bit CPU which is implemented with a very small 
@@ -47,7 +45,7 @@ License, Version 2.0 (see LICENSE for full text).
 
 ## Copyright
 
-Copyright (c) 2019 Naoki Hirayama
+Copyright (c) 2019-2020 Naoki Hirayama
 
 ## Notice
 
