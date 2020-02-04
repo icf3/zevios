@@ -2,16 +2,16 @@
 # icf3z test bench
 #
 icarus: simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v pmem.bin
-	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=8 -o simz simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v  -T typ
+	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=8 -o simz simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
 
 icarus_spm16: simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v pmem.bin
-	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=16 -o simz simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v  -T typ
+	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=16 -o simz simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
 
 icarus_int: simz_int.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v pmem.bin
-	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=8 -o simz simz_int.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v  -T typ
+	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=8 -o simz simz_int.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
 
 icarus_int_spm16: simz_int.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v pmem.bin
-	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=16 -o simz simz_int.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v  -T typ
+	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=16 -o simz simz_int.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
 
 xsim: simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v pmem.bin
 	xvlog -d PC_WIDTH=10 -d SPM_WIDTH=8  simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v 
@@ -30,7 +30,7 @@ xsim_int_spm16: simz_int.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v pm
 	xelab simz  -s simsim --debug wave
 
 interrupt3: simz_interrupt3.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v pmem.bin
-	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=8 -o simz simz_interrupt3.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v  -T typ
+	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=8 -o simz simz_interrupt3.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
 
 xsim_interrupt3: simz_interrupt3.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v pmem.bin
 	xvlog -d PC_WIDTH=10 -d SPM_WIDTH=8  simz_interrupt3.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v 

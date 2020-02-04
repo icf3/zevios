@@ -1,7 +1,7 @@
 top: icarus
 
 icarus: icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
-	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=16 -o icf3z icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v -T typ
+	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=16 -o icf3z icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
 
 xsim: icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
 	xvlog -d PC_WIDTH=10 -d SPM_WIDTH=16 -d USE_XPM  -d USE_XPM_10bit icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v

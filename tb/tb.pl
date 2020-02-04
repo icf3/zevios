@@ -3,6 +3,7 @@
 # ICF3-Z Project https://icf3z.idletime.tokyo/
 # Naoki Hirayama 2019/05/23
 # Naoki Hirayama 2019/12/23
+# Naoki Hirayama 2020/02/04
 ##########################################################
 
 ##### Optiopn #####
@@ -23,12 +24,12 @@ foreach( @ARGV ) {
     if(/^int$/) { $store = "_int"; }
 }
 
-$MAKE = "make icarus$int$spm16 >& /dev/null";
+$MAKE = "make icarus$int$spm16 2>&1 /dev/null";
 $EXE = "./simz |";
 
 foreach( @ARGV ) {
     if(/^xsim$/) {
-        $MAKE = "make xsim$int$spm16 >& /dev/null";
+        $MAKE = "make xsim$int$spm16 2>&1 /dev/null";
         $EXE = "xsim -R simsim |";
     }
 }
@@ -39,7 +40,7 @@ sub dotest {
     system("./isimz a $tname.asmz");
     system("rm -rf pmem.bin");
     system("mv $tname.bin pmem.bin");
-    system($MAKE);
+    `$MAKE`;
     open(IN,$EXE);
 
     $flag = 0;
@@ -217,10 +218,10 @@ system("rm -rf pmem.bin");
 system("mv $tname.bin pmem.bin");
 
 if($EXE =~ /^xsim/) {
-    system("make xsim_interrupt3 >& /dev/null");
+    `make xsim_interrupt3 2>&1 /dev/null`;
     open(IN,"xsim -R simsim |");
 } else {
-    system("make interrupt3 >& /dev/null");
+    `make interrupt3 2>&1 /dev/null`;
     open(IN,"./simz |");
 }
 

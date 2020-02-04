@@ -5,7 +5,7 @@ top: icarus
 
 # icarus verilog
 icarus: simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
-	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=16 -o simz simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v -T typ
+	iverilog -DPC_WIDTH=10 -DSPM_WIDTH=16 -o simz simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v
 
 # Xilinx vivado
 xsim: simz.v icf3z.v czctl.v czabcd.v czpmem.v czsmem.v czreg.v

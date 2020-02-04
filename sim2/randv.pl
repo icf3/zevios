@@ -2,18 +2,19 @@
 ##########################################################
 # ICF3-Z Project https://icf3z.idletime.tokyo/
 # Naoki Hirayama 2020/01/14
+# Naoki Hirayama 2020/02/04
 ##########################################################
 open(CHK1,"icf3z.v") || die "'make copy' ";
 close(CHK1);
 open(CHK2,"isimz") || die "./isimz not found.";
 close(CHK2);
 
-$MAKE = "make icarus >& /dev/null";
+$MAKE = "make icarus 2>&1 /dev/null";
 $EXE = "./simz |";
 
 foreach( @ARGV ) {
     if(/^xsim$/) {
-        $MAKE = "make xsim >& /dev/null";
+        $MAKE = "make xsim 2>&1 /dev/null";
         $EXE = "xsim -R simsim |";
     }
 }
@@ -69,7 +70,7 @@ do {
     system("./isimz a tmp.asmz");
     system("rm -rf pmem.bin");
     system("mv tmp.bin pmem.bin");
-    system($MAKE);
+    `$MAKE`;
     open(IN,$EXE);
     $success=0;
     $res = "null";
