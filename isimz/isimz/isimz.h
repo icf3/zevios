@@ -12,6 +12,7 @@
 
 extern unsigned int mode;
 extern FILE *fp; /* output */
+extern void exit_error(char* msg);
 
 void icf_asm(const char* asmfile);
 int icf_sim();

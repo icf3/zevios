@@ -2,17 +2,17 @@
    Ver0.0 2019/04/23
    Ver0.1 2019/05/22
    Ver0.2 2020/01/13
+   Ver0.3 2020/02/21
    ICF3-Z Project https://icf3z.idletime.tokyo/
    Naoki Hirayama
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <string.h>
 #include "isimz.h"
 
-static char ver[] = "0.2";
-extern uint64_t time;
+static char ver[] = "0.3";
+extern unsigned long long time;
 
 unsigned int mode;
 FILE *fp;
@@ -23,9 +23,16 @@ void exit_error(char* msg) {
 }
 
 int main(int argc,char *argv[]) {
-    int exit_code;
+    int exit_code = 0;
     int len;
-    char* filename;
+    char* filename = NULL;
+
+    if(sizeof(long long)!=8)
+        printf("long long is no 8byte\n"),exit(-1);
+    if(sizeof(int)!=4)
+        printf("int is no 4byte\n"),exit(-1);
+    if(sizeof(short)!=2)
+        printf("short is no 2byte\n"),exit(-1);
 
     fp = stdout;
     mode = 0;
@@ -84,4 +91,5 @@ int main(int argc,char *argv[]) {
     printf("Sim end. end code = %d cyc = %llu\n",exit_code,time);
 	if(fp!=stdout) fprintf(fp,"#Sim end. end code = %d cyc = %llu\n",exit_code,time);
 	fclose(fp);
+    return 0;
 }

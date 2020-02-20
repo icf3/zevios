@@ -5,19 +5,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdint.h>
 #include "isimz.h"
 
-extern uint32_t PCODE[PLEN];
-extern uint32_t PDEBUG[PLEN];
+extern unsigned int PCODE[PLEN];
+extern unsigned int PDEBUG[PLEN];
 
-uint64_t time;
-uint8_t A,B,C,D;
+
+unsigned long long time;
+unsigned char A,B,C,D;
 int CF,ZF,I,PC;
-uint8_t *R;
+unsigned char *R;
 int STACK[MAX_SP];
 int SP,HL;
-uint8_t COPR;
+unsigned char COPR;
 
 #define COPRbit   P[30]
 #define STOREbit  P[18]
@@ -62,25 +62,28 @@ void not_support(char* cmd) {
 }
 
 int icf_sim() {
-    uint8_t ADDL,ADDR,ANS,PA,REG;
-    uint16_t ADD;
-    int X,Z,PC0;
+    unsigned char ADDL,ADDR,ANS,PA;
+    unsigned short ADD;
+    int X,Z,PC0,i;
     int P[32];
-    int Q,CY,i;
     int opcode;
     int cancel; 
     int loop;
     int wait;
-    uint32_t code,code_adr, debug;
-	
+    unsigned int code_adr;
+    unsigned int debug = 0;
+    unsigned int code = 0;
+    int CY = 0;
+    int Q = 0;
+    unsigned char REG = 0;
+
     time = 0;
     PC  = 1;
     PC0 = CF = ZF = SP = HL = cancel = wait = 0;
-    R = calloc(MAX_SRAM,sizeof(uint8_t));
+    R = calloc(MAX_SRAM,sizeof(unsigned char));
     if(R==NULL) exit_error("Out of Memory");
 
     loop = -1;
-
     while(1) {
         time ++;
 //      printf("*** time = %d PC = %08X PC0 = %08X\n",time,PC,PC0);
@@ -258,8 +261,8 @@ int icf_sim() {
                 if(Z==3) ANS=  0x34;             // IADR low
                 if(Z==4) ANS = 0x12;             // IADR high
             } else {
-                ADD = (uint16_t)ADDL + (uint16_t)ADDR + (uint16_t)((CF&CFbit)|ONEbit);
-                ANS = (uint8_t)ADD;
+                ADD = (unsigned short)ADDL + (unsigned short)ADDR + (unsigned short)((CF&CFbit)|ONEbit);
+                ANS = (unsigned char)ADD;
                 CY = ADD>>8;
     		    Q = A>>7 | CY;
             }

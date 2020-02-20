@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdint.h>
 #include <errno.h>
 #include "isimz.h"
 
@@ -15,11 +14,11 @@
 #define MAX_LBL     (1024)
 #define MAX_DEF     (256)
 
-uint32_t PCODE[PLEN];
-uint32_t PDEBUG[PLEN];
+unsigned int PCODE[PLEN];
+unsigned int PDEBUG[PLEN];
 
 static char lbl[MAX_LBL][NEM_SIZE];
-static uint32_t lbl_adr[MAX_LBL];
+static unsigned int lbl_adr[MAX_LBL];
 static int lbl_ptr;
 
 static char def[MAX_DEF][WORD_SIZE];
@@ -102,8 +101,8 @@ int StrMch(char *p,const char *q) {
 	return 1;
 }
 
-void resource_check(uint32_t c) {
-    static uint32_t chk = 0;
+void resource_check(unsigned int c) {
+    static unsigned int chk = 0;
     if(c==0) chk=0;
     if(chk & c) {
         fprintf(fp,"ERROR: mnemonic conflict in %d\n",s_line);
@@ -114,17 +113,17 @@ void resource_check(uint32_t c) {
 	chk |= c;
 }    
 
-void CODE(uint32_t* code, uint32_t nem, uint32_t chk) {
+void CODE(unsigned int* code, unsigned int nem, unsigned int chk) {
     if(chk!=0) resource_check(nem);
     *code |= nem;
 }
 
-void CODE_OP(uint32_t* code,int op) {
+void CODE_OP(unsigned int* code,int op) {
     resource_check(0x3e000000);
     *code |= op<<25;
 }
 
-void CODE_BC(uint32_t* code, int s) {
+void CODE_BC(unsigned int* code, int s) {
     int c = ((*code)>>20)&0xF;
     if((s&0xF)!=s) exit_msg("Internal Error CODE_BC()");
 
@@ -167,10 +166,10 @@ void CODE_BC(uint32_t* code, int s) {
     exit_msg("Invalid B, C combination");
 }
 
-void CODE_JUMP(uint32_t *code,int op,int copr,char *adr) {
+void CODE_JUMP(unsigned int *code,int op,int copr,char *adr) {
 	char l[NEM_SIZE];
 	int i,j,count;
-	unsigned long jmp;
+	unsigned int jmp = PLEN;
     resource_check(0x7e00ffff);
 
 	for(i=0,j=0 ; adr[i]!='\0' && adr[i] !=')' ; i++) l[j++] = adr[i];
@@ -192,10 +191,10 @@ void CODE_JUMP(uint32_t *code,int op,int copr,char *adr) {
 }
 
 
-void CODE_LOOP(uint32_t *code,int op,int copr,char *adr,int pc) {
+void CODE_LOOP(unsigned int *code,int op,int copr,char *adr,int pc) {
 	char l[NEM_SIZE];
-	int i,j,count;
-	int jmp,n;
+	int i,j,count,n;
+	int jmp = 0;
     resource_check(0x7e00ffff);
 
 	for(i=0,j=0 ; adr[i]!='\0' && adr[i] !=')' ; i++) l[j++] = adr[i];
@@ -218,13 +217,15 @@ void CODE_LOOP(uint32_t *code,int op,int copr,char *adr,int pc) {
 }
 
 
-void CODE_COMPRESS(uint32_t *code,char *p) {
+void CODE_COMPRESS(unsigned int *code,char *p) {
     char w0[NEM_SIZE];
     char w1[NEM_SIZE];
     char w2[NEM_SIZE];
     char w3[NEM_SIZE];
 	int i,j,count;
-	unsigned long jmp1,jmp2,copr1,copr2;
+    unsigned int copr1,copr2;
+	unsigned int jmp1 = 0;
+	unsigned int jmp2 = 0;
     resource_check(0xffffffff);
 
 	for(i=0,j=0 ; p[i]!='\0' && p[i] !=','  && j<NEM_SIZE ; i++) w0[j++] = p[i];
@@ -306,10 +307,9 @@ unsigned short get_value(char *w) {
 
 
 void icf_asm(const char* asmfile) {
-    int i,j,c,cp,num;
+    int i,j,c,cp;
     FILE *fasm;
-	unsigned long adr,debug;
-    uint32_t code;
+	unsigned int adr,debug,code;
 
     /* PASS1 */
     
@@ -334,12 +334,12 @@ void icf_asm(const char* asmfile) {
             num = strtol(p,&endptr,0);
             if(p==endptr || errno) {
                 fprintf(fp,"ERROR: invalid define in %d\n",err_line);
-                fprintf(fp,buf);
+                fprintf(fp,"%s",buf);
                 exit(-1);
             }
             if(*endptr!='\0' && *endptr!='\n' && *endptr!='\r' && *endptr!=' ' && *endptr!='\t') {
                 fprintf(fp,"ERROR: invalid define in %d\n",err_line);
-                fprintf(fp,buf);
+                fprintf(fp,"%s",buf);
                 exit(-1);
             }
             def_num[def_ptr++] = num;
